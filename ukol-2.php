@@ -23,10 +23,20 @@
             </tr>
         </thead>
         <tr>
-            <td>123</td>
-            <td>Josef</td>
-            <td>1.1.2000</td>
-            <td>0 Kč</td>
+
+<?php
+$handle = fopen('objednavky.csv', 'r');
+if ($handle) {
+    while (($line = fgets($handle, 4096)) !== false) {
+        $hodnoty= explode(';', $line);
+        echo "<tr><td>" . $hodnoty[0] . "</td>";
+        echo "<td>" . $hodnoty[3] . "</td>";
+        echo "<td>" . $hodnoty[2] . "</td>";
+        echo "<td>" . $hodnoty[1] . " Kč </td></tr>";
+    }
+    fclose($handle);
+} ?>
+
         </tr>
     </table>
 </div>
